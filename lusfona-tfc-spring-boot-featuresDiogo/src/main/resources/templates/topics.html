@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="topics">
+
+<head>
+
+	<meta charset="UTF-8">
+	
+	<!-- CSS -->
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" />
+	<link rel="stylesheet" th:href="@{/css/styles.css}" />
+	
+	
+	<!-- JS -->
+	<script type="text/javascript" th:src="@{/webjars/jquery/3.7.1/jquery.min.js}"></script>
+	
+	<!-- FAVICON -->
+	<link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}" />
+	
+	<title>Forum</title>
+	<!-- TEST                                                                                                                -->
+</head>
+
+<body>
+
+	<div th:replace="~{header :: header}"></div>
+
+	<main role="main" class="wrap">
+
+		<div class="container-wrapper">
+
+			<div class="row">
+
+				<div class="col-md-3">
+					<div th:replace="~{aside :: aside}"></div>
+				</div>
+
+				<div class="col-md-9">
+
+					<section id="main-container">
+					
+						<div class="container mt-5">
+					        <h1>Topics</h1>
+					        
+					        <table class="table table-striped">
+					            <thead>
+					                <tr>
+					                    <th scope="col">Id</th>
+					                    <th scope="col">Title</th>
+					                    <th scope="col">Posts</th>
+					                    <th scope="col"></th>
+					                </tr>
+					            </thead>
+					            <tbody>
+					                <tr th:each="topic : ${topics}">
+					                    <td th:text="${topic.id}"></td>
+					                    <td th:text="${topic.title}"></td>
+					                    <td th:text="${topic.posts.size()}"></td>
+					                    <td>
+					                        <a th:href="@{/topics/{id}(id=${topic.id})}" class="btn btn-primary">View</a>
+					                    </td>
+					                </tr>
+					            </tbody>
+					        </table>					    
+									
+						</div>
+					
+					</section>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</main>
+
+	<div th:replace="~{footer :: footer}"></div>
+
+</body>
+
+</html>

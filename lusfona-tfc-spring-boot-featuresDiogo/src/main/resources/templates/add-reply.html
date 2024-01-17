@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="topics">
+
+<head>
+
+	<meta charset="UTF-8">
+	
+	<!-- CSS -->
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" />
+	<link rel="stylesheet" th:href="@{/css/styles.css}" />
+	
+	
+	<!-- JS -->
+	<script type="text/javascript" th:src="@{/webjars/jquery/3.7.1/jquery.min.js}"></script>
+	
+	<!-- FAVICON -->
+	<link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}" />
+	
+	<title>Forum</title>
+
+</head>
+
+<body>
+
+	<div th:replace="~{header :: header}"></div>
+
+	<main role="main" class="wrap">
+
+		<div class="container-wrapper">
+
+			<div class="row">
+
+				<div class="col-md-3">
+					<div th:replace="~{aside :: aside}"></div>
+				</div>
+
+				<div class="col-md-9">
+
+					<section id="main-container">
+					
+						<div class="container mt-5">
+
+						    <h1 class="mb-4">Reply</h1>
+						    
+						    <form th:action="@{/topics/reply/{id}(id=${topic.id})}" method="post">
+						        <div class="mb-3">
+						            <label for="userName" class="form-label">Username:</label>
+						            <input type="text" class="form-control" id="userName" name="userName" required>
+						        </div>
+						        <div class="mb-3">
+						            <label for="text" class="form-label">Text:</label>
+						            <textarea class="form-control" id="text" name="text" rows="4" required></textarea>
+						        </div>
+						        <div class="mb-3">
+						            <button type="submit" class="btn btn-primary">Submit</button>
+						        </div>
+						    </form>
+					    
+					    </div>
+					    
+					</section>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</main>
+
+	<div th:replace="~{footer :: footer}"></div>
+
+</body>
+
+</html>
